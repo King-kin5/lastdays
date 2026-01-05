@@ -74,7 +74,7 @@ public:
     void setAttackBonus(int a) { attackBonus = a; }
     void setDefenseBonus(int d) { defenseBonus = d; }
     void setHealthBonus(int h) { healthBonus = h; }
-    void setHealAmount(int h) { healAmount = h; }
+    void setHealthAmount(int h) { healAmount = h; }
     void setDamageAmount(int d) { damageAmount = d; }
     void setQuestItem(bool q, string qId = "") { isQuestItem = q; questId = qId; }
     

@@ -137,7 +137,6 @@ void ItemDatabase::initializeWeapons() {
         ItemType::WEAPON,ItemRarity::LEGENDARY);
     excalibur->setAttackBonus(25);
     excalibur->setDefenseBonus(10);
-    excalibur->setMagicBonus(10);
     excalibur->setHealthBonus(50);
     excalibur->setValue(25);
     items["excalibur"]=excalibur;
@@ -191,12 +190,12 @@ void ItemDatabase::initializeArmor(){
     invisibilityPotion->setValue(10);
     items["invisibility_potion"]=invisibilityPotion;
     
-    auto full-plate=make_shared<Item>("full-plate","Full Plate","A full plate that protects the wearer",
+    auto fullplate=make_shared<Item>("full-plate","Full Plate","A full plate that protects the wearer",
         ItemType::ARMOR,ItemRarity::RARE);
-    full-plate->setDefenseBonus(20);
-    full-plate->setValue(100);
-    full-plate->setHealthBonus(20);
-    items["full-plate"]=full-plate;  
+    fullplate->setDefenseBonus(20);
+    fullplate->setValue(100);
+    fullplate->setHealthBonus(20);
+    items["full-plate"]=fullplate;  
     
     auto dragon=make_shared<Item>("dragon","Dragon","A dragon that protects the wearer",
         ItemType::ARMOR,ItemRarity::LEGENDARY);
@@ -208,7 +207,7 @@ void ItemDatabase::initializeArmor(){
     auto titaniumPlate=make_shared<Item>("titanium_plate","Titanium Plate","A titanium plate forged from rare Titanium ore ",
         ItemType::ARMOR,ItemRarity::EPIC);
     titaniumPlate->setDefenseBonus(15);
-    titaniumPlate->setHealthBonus(30)
+    titaniumPlate->setHealthBonus(30);
     titaniumPlate->setValue(600);
     items["titanium_plate"]=titaniumPlate;  
     
@@ -259,46 +258,196 @@ void ItemDatabase::initializeConsumables(){
     
     auto cheese=make_shared<Item>("cheese","Cheese","Restores small amount of health",
         ItemType::CONSUMABLE,ItemRarity::COMMON);
-    cheese->setHealthAmount( 10);
+    cheese->setHealthBonus( 10);
     cheese->setValue(5);
     cheese->setStackable(true,99);
     items["cheese"]=cheese;
     
     auto apple=make_shared<Item>("apple","Apple","Restores small amount of health",
         ItemType::CONSUMABLE,ItemRarity::COMMON);
-    apple->setHealthAmount(6);
+    apple->setHealthBonus(6);
     apple->setValue(2);
     apple->setStackable(true,99);
     items["apple"]=apple;
     
     auto meat=make_shared<Item>("meat","Meat","Restores small amount of health",
         ItemType::CONSUMABLE,ItemRarity::COMMON);
-    meat->setHealthAmount(20);
+    meat->setHealthBonus(20);
     meat->setValue(10);
     meat->setStackable(true,99);
     items["meat"]=meat;
     
     auto fish=make_shared<Item>("fish","Fish","Restores small amount of health",
         ItemType::CONSUMABLE,ItemRarity::COMMON);
-    fish->setHealthAmount(15);
+    fish->setHealthBonus(15);
     fish->setValue(8);
     fish->setStackable(true,99);
     items["fish"]=fish;
     
     auto water=make_shared<Item>("water","Water","Restores small amount of health",
         ItemType::CONSUMABLE,ItemRarity::COMMON);
-    water->setHealthAmount(10);
+    water->setHealthBonus(10);
     water->setValue(1);
     water->setStackable(true,99);
     items["water"]=water;
-    // BUFFS
-    auto strengthElixir=make_shared<Item>("strengthElixir","Strength Elixir","Permently Increases Health",
-        ItemType::BUFF,ItemRarity::LEGENDARY);
-    strengthElixir->setHealthAmount(999);
-    strengthElixir->setValue(2000);
-    strengthElixir->setStackable(true,99);
-    items["strengthElixir"]=strengthElixir;
 }
 
 
+
+void ItemDatabase::initializeTreasures() {
+    auto goldCoin = make_shared<Item>("gold_coin", "Gold Coin", 
+        "A shiny gold coin.", 
+        ItemType::TREASURE, ItemRarity::COMMON);
+    goldCoin->setValue(10);
+    goldCoin->setStackable(true, 999);
+    items["gold_coin"] = goldCoin;
+    
+    auto silverRing = make_shared<Item>("silver_ring", "Silver Ring", 
+        "A simple silver ring.", 
+        ItemType::TREASURE, ItemRarity::UNCOMMON);
+    silverRing->setValue(50);
+    items["silver_ring"] = silverRing;
+    
+    auto goldNecklace = make_shared<Item>("gold_necklace", "Gold Necklace", 
+        "An ornate golden necklace.", 
+        ItemType::TREASURE, ItemRarity::RARE);
+    goldNecklace->setValue(150);
+    items["gold_necklace"] = goldNecklace;
+    
+    auto ruby = make_shared<Item>("ruby", "Ruby", 
+        "A flawless red ruby.", 
+        ItemType::TREASURE, ItemRarity::EPIC);
+    ruby->setValue(300);
+    items["ruby"] = ruby;
+    
+    auto crown = make_shared<Item>("ancient_crown", "Ancient Crown", 
+        "A crown from a long-lost kingdom.", 
+        ItemType::TREASURE, ItemRarity::LEGENDARY);
+    crown->setValue(1000);
+    items["ancient_crown"] = crown;
+}
+
+void ItemDatabase::initializeKeys() {
+    auto rustKey = make_shared<Item>("rusty_key", "Rusty Key", 
+        "An old rusty key. What does it unlock?", 
+        ItemType::KEY, ItemRarity::COMMON);
+    rustKey->setValue(0);
+    items["rusty_key"] = rustKey;
+    
+    auto cellarKey = make_shared<Item>("cellar_key", "Cellar Key", 
+        "Opens the tavern cellar in Thornhaven.", 
+        ItemType::KEY, ItemRarity::COMMON);
+    cellarKey->setValue(0);
+    items["cellar_key"] = cellarKey;
+    
+    auto shrineKey = make_shared<Item>("shrine_key", "Shrine Key", 
+        "Opens the old shrine in Mistwood.", 
+        ItemType::KEY, ItemRarity::UNCOMMON);
+    shrineKey->setValue(0);
+    items["shrine_key"] = shrineKey;
+    
+    auto fortressKey = make_shared<Item>("fortress_key", "Fortress Key", 
+        "A heavy iron key to Irongate's inner chambers.", 
+        ItemType::KEY, ItemRarity::RARE);
+    fortressKey->setValue(0);
+    items["fortress_key"] = fortressKey;
+}
+
+void ItemDatabase::initializeMaterials() {
+    auto leather = make_shared<Item>("leather", "Leather", 
+        "Cured animal hide. Useful for crafting.", 
+        ItemType::MATERIAL, ItemRarity::COMMON);
+    leather->setValue(5);
+    leather->setStackable(true, 99);
+    items["leather"] = leather;
+    
+    auto ironOre = make_shared<Item>("iron_ore", "Iron Ore", 
+        "Raw iron ore. Can be smelted.", 
+        ItemType::MATERIAL, ItemRarity::UNCOMMON);
+    ironOre->setValue(15);
+    ironOre->setStackable(true, 99);
+    items["iron_ore"] = ironOre;
+    
+    auto dragonTooth = make_shared<Item>("dragon_tooth", "Dragon Tooth", 
+        "A massive tooth from a dragon. Extremely rare.", 
+        ItemType::MATERIAL, ItemRarity::EPIC);
+    dragonTooth->setValue(200);
+    dragonTooth->setStackable(true, 10);
+    items["dragon_tooth"] = dragonTooth;
+}
+
+shared_ptr<Item> ItemDatabase::getItem(const string& itemId) {
+    auto it = items.find(itemId);
+    if (it != items.end()) {
+        return it->second;
+    }
+    return nullptr;
+}
+
+vector<string> ItemDatabase::getAllItemIds() const {
+    vector<string> ids;
+    for (const auto& pair : items) {
+        ids.push_back(pair.first);
+    }
+    return ids;
+}
+
+vector<shared_ptr<Item>> ItemDatabase::getItemsByType(ItemType type) const {
+    vector<shared_ptr<Item>> result;
+    for (const auto& pair : items) {
+        if (pair.second->getType() == type) {
+            result.push_back(pair.second);
+        }
+    }
+    return result;
+}
+vector<shared_ptr<Item>> ItemDatabase::getItemsByRarity(ItemRarity rarity) const {
+    vector<shared_ptr<Item>> result;
+    for (const auto& pair : items) {
+        if (pair.second->getRarity() == rarity) {
+            result.push_back(pair.second);
+        }
+    }
+    return result;
+}
+shared_ptr<Item> ItemDatabase::generateRandomLoot(ItemRarity minRarity) {
+    // Random rarity roll
+    int roll = rand() % 100;
+    ItemRarity rarity;
+    if (roll < 50) rarity = ItemRarity::COMMON;
+    else if (roll < 75) rarity = ItemRarity::UNCOMMON;
+    else if (roll < 90) rarity = ItemRarity::RARE;
+    else if (roll < 98) rarity = ItemRarity::EPIC;
+    else rarity = ItemRarity::LEGENDARY;
+    
+    // Apply minimum rarity
+    if (rarity < minRarity) {
+        rarity = minRarity;
+    }
+    auto itemsOfRarity = getItemsByRarity(rarity);
+    if (itemsOfRarity.empty()) {
+        return nullptr;
+    }   
+    int index = rand() % itemsOfRarity.size();
+    return itemsOfRarity[index];
+}
+shared_ptr<Item> ItemDatabase::generateRandomWeapon() {
+    auto weapons = getItemsByType(ItemType::WEAPON);
+    if (weapons.empty()) return nullptr;
+    return weapons[rand() % weapons.size()];
+}
+shared_ptr<Item> ItemDatabase::generateRandomArmor() {
+    auto armor = getItemsByType(ItemType::ARMOR);
+    if (armor.empty()) return nullptr;
+    return armor[rand() % armor.size()];
+}
+shared_ptr<Item> ItemDatabase::generateRandomConsumable() {
+    auto consumables = getItemsByType(ItemType::CONSUMABLE);
+    if (consumables.empty()) return nullptr;
+    return consumables[rand() % consumables.size()];
+    
+}shared_ptr<Item> ItemDatabase::generateRandomTreasure() {
+    auto treasures = getItemsByType(ItemType::TREASURE);
+    if (treasures.empty()) return nullptr;
+    return treasures[rand() % treasures.size()];
 }
